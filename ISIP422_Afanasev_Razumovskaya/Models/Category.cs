@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ISIP422_Afanasev_Razumovskaya.Models
 {
-    internal class Category
+    public enum Category
     {
+        Electronics,    // Электроника
+        Clothing,       // Одежда
+        Food,          // Продукты питания
+        Books,         // Книги
+        Home           // Товары для дома
     }
 }
