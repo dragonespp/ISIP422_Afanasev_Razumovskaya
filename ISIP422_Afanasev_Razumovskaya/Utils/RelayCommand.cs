@@ -14,7 +14,7 @@ namespace ISIP422_Afanasev_Razumovskaya.Utils
 
         public RelayCommand(Action<object> execute, Predicate<object> canExecute = null)
         {
-            _execute = execute;
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
         }
 
