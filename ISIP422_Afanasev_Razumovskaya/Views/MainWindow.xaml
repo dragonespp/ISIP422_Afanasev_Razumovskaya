@@ -3,12 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:models="clr-namespace:ISIP422_Afanasev_Razumovskaya.Models"
         xmlns:vm="clr-namespace:ISIP422_Afanasev_Razumovskaya.ViewModels"
+        xmlns:local="clr-namespace:ISIP422_Afanasev_Razumovskaya"
         Title="🏪 Система учёта товаров" Height="900" Width="1400"
         WindowStartupLocation="CenterScreen"
         Background="#F8F9FA"
         MinHeight="700" MinWidth="1200">
 
     <Window.Resources>
+        <!-- Объявление конвертеров как ресурсов -->
+        <local:BoolToColorConverter x:Key="BoolToColorConverter"/>
+        <local:BoolToTextConverter x:Key="BoolToTextConverter"/>
+        <local:CategoryDisplayConverter x:Key="CategoryDisplayConverter"/>
+
         <!-- Современные стили -->
         <Style x:Key="ModernButton" TargetType="Button">
             <Setter Property="Background" Value="#007BFF"/>
@@ -279,9 +285,9 @@
                         </DataGridTemplateColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Border Background="{Binding InStock, Converter={x:Static local:BoolToColorConverter.Instance}}" 
+                                <Border Background="{Binding InStock, Converter={StaticResource BoolToColorConverter}}" 
                                         CornerRadius="10" Padding="8,4">
-                                    <TextBlock Text="{Binding InStock, Converter={x:Static local:BoolToTextConverter.Instance}}" 
+                                    <TextBlock Text="{Binding InStock, Converter={StaticResource BoolToTextConverter}}" 
                                                Foreground="White" 
                                                FontWeight="Bold" 
                                                HorizontalAlignment="Center"/>
@@ -289,7 +295,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="🏷️ Категория" Binding="{Binding Category}" Width="140">
+                    <DataGridTextColumn Header="🏷️ Категория" Binding="{Binding Category, Converter={StaticResource CategoryDisplayConverter}}" Width="140">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="#007BFF"/>
@@ -522,9 +528,9 @@
                         </DataGridTemplateColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Border Background="{Binding InStock, Converter={x:Static local:BoolToColorConverter.Instance}}" 
+                                <Border Background="{Binding InStock, Converter={StaticResource BoolToColorConverter}}" 
                                         CornerRadius="10" Padding="8,4">
-                                    <TextBlock Text="{Binding InStock, Converter={x:Static local:BoolToTextConverter.Instance}}" 
+                                    <TextBlock Text="{Binding InStock, Converter={StaticResource BoolToTextConverter}}" 
                                                Foreground="White" 
                                                FontWeight="Bold" 
                                                HorizontalAlignment="Center"/>
@@ -532,7 +538,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="🏷️ Категория" Binding="{Binding Category}" Width="140">
+                    <DataGridTextColumn Header="🏷️ Категория" Binding="{Binding Category, Converter={StaticResource CategoryDisplayConverter}}" Width="140">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="#28A745"/>
